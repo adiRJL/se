@@ -5,7 +5,7 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <script type="text/javascript">
@@ -66,8 +66,10 @@
     </div>
     <div class="col-sm-2">
       <h2>Seat</h3>
-      <h3>Seat: {{ results.seat }}</h3>
-      <h3>Class: {{ results.class }}</h3>
+      {% for s in results.seat %}
+        <h3>Seat: {{ s }}</h3>
+        <h3>Class: {{ results.class }}</h3>
+      {% endfor %}
     </div>
     <div class="col-sm-2">
       <h2>Date</h3>
@@ -78,7 +80,7 @@
 
 <footer class="container-fluid text-center">
 	<form>
-		<input class="btn btn-success" type=button value="Print Ticket" onClick="javascript:window.print()">
+		<input class="btn btn-info" type=button value="Print Ticket" onClick="javascript:window.print()">
 	</form>
 </footer>
 {% endblock %}

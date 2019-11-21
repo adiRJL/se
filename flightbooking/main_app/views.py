@@ -74,7 +74,10 @@ class UserFormView(TemplateView):
 
 class Index(TemplateView):
     template_name = 'main_app/index.html'
-
+    def get(self,request):
+    	flights=Flight.objects.all()
+    	print("hiii")
+    	return render(request,self.template_name,{'flights':flights})
 
 class GetCities(APIView):
 	# submission throttling
@@ -108,8 +111,11 @@ class TicketPage(TemplateView):
 		request.session['receiver_email'] = receiver_email
 		gender = request.POST.get("gender", " ")
 
+		seat = []
+		for p in range(int(request.session["passengers"])):
+			seat.append(str(random.randint(1, 40)) + chr(random.randint(65, 77)))
+			print("\n\n\n", seat)
 
-		seat = str(random.randint(1, 40)) + chr(random.randint(65, 77))
 		class_ = "Economy"
 		flight_name = request.POST.get("flight_name", " ")
 		flight = Flight.objects.get(name = flight_name)

@@ -1,27 +1,141 @@
 {% extends 'main_app/base.html' %}
 
-{% block body %}    
-<h3>Already a member?</h3>
+{% block body %}  
 
-  <form class="form-horizontal" action="{% url 'main_app:LoginPage' %}" 
-  method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    
-    <div class="form-group">
-      <label class="control-label col-sm-1">Username</label>
-      <input col-sm-offset-2 type="text" name="username">
+<div class="wrapper ">
+
+  <div class="sidebar" data-color="azure" data-background-color="white" data-image="/static/material-dashboard/assets/img/sidebar-1.jpg">
+      <div class="logo">
+        <a  href="{% url 'main_app:Index' %}" class="simple-text logo-normal">
+          KIA
+        </a>
+      </div>
+            <div class="sidebar-wrapper">
+        <ul class="nav">
+           <li class="nav-item nav-item-info active">
+            <a href="{% url 'main_app:RegisterPage' %}" class="nav-link">
+              <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; 
+              <i class="material-icons">person</i>
+              {% if 'username' in request.session  %}
+                  Logout
+              {% else %}
+                  Register/Login
+              {% endif %}
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a href="#" class="nav-link">
+              <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span >&nbsp;<i class="material-icons">info_outline</i>FAQ
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span >&nbsp;<i class="material-icons">bubble_chart</i>About us
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span >&nbsp;<i class="material-icons">library_books</i>Licenses
+            </a>
+          </li>
+          
+
+        </ul>
+      </div>
+
     </div>
+<div class="main-panel">
 
-    <div class="form-group">
-      <label class="control-label col-sm-1">Password</label>
-      <input type="password" name="password">
-    </div>
+<div class="content"> 
+  <div class="container-fluid"> 
+    <div class="row"> 
+      <div class="col-md-8">
+        <div class="card" id= "signup_form">
+<!-- <h3>Already a member?</h3> -->
+            <div class="card-header card-header-info">
+                  <h4 class="card-title">Log in</h4>
+                  <p class="card-category">Enter your details</p>
+            </div>
+              <div class="card-body">
+                <form class="has-info" action="{% url 'main_app:LoginPage' %}" 
+                method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  
 
-    <div class="form-group">
-      <div class="col-sm-offset-1 col-sm-10">
-        <button type="submit" class="btn btn-success" name="login" name="login-submit">
-        Login</button>
+
+                   <div class="row">
+                    <div class="col-md-12">
+                          <div class="form-group">
+                            <label class="bmd-label-floating">Username</label>
+                            <!-- <input col-sm-offset-2 type="text" name="username"> -->
+                            <input type="text" id="name" name="username" class="form-control">
+                          </div>
+                </div>
+              </div>
+
+                <div class="row">
+                      <div class="col-md-12">
+
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Password</label>
+                    <!-- <input type="password" name="password"> -->
+                    <input type="password" id="password1" name="password" class="form-control">
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-12">
+                  <div class="form-group text-center">
+                    <!-- <div class="col-sm-offset-1 col-sm-10"> -->
+                      <!-- <button type="submit" class="btn btn-success" name="login" name="login-submit">
+                      Login</button> -->
+                      <button type="submit" class="btn" style="background:black" id="login" name="login" name="login-submit">LOGIN</button>
+                    <!-- </div> -->
+                  </div>
+                </div>
+              </div>
+
+                <div class="clearfix"></div>
+              </form>
+
+              </div>
+          </div>
+          </div>
       </div>
     </div>
-  </form>
+  </div>
+  <footer class="footer">
+        <div class="container-fluid">
+          <nav class="float-left">
+            <ul>
+              <li>
+                <a href="#">
+                  KIA
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  About Us
+                </a>
+              </li>
+              
+              <li>
+                <a href="#">
+                  Licenses
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>
+          </div>
+        </div>
+      </footer>
+  </div>
+</div>
 {% endblock %}

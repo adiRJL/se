@@ -3,7 +3,7 @@
 
 {% block head %}
 <title>List of Hotels</title>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> -->
 
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -21,10 +21,21 @@
         i.setAttribute('value', flight_name);
         f.submit();
     }
+    function f(event)
+    {
+        //console.log( event.target.style.background);
+        event.target.style.backgroundColor="azure";
+    }
+        function fin(event)
+    {
+        event.target.style.backgroundColor="white";
+    }
 </script>
 {% endblock %}
 
 {% block body %}
+<div class="wrapper ">
+<div class="content">
 <div class="container-fluid">
     <div class="row">
 
@@ -47,7 +58,7 @@
                         </thead>
                         <tbody>
                             {% for flight in results %}
-                            <tr onclick = "selection_page_link(event)">
+                            <tr style="cursor: pointer;" onmouseover="f(event)" onmouseout="fin(event)"onclick = "selection_page_link(event)">
                                 <td>
                                     <img src="{% static 'main_app/images/' %}{{ flight.image_url }}"
                                          height="100" width="150">
@@ -79,6 +90,39 @@
     </div>
 
 </div>
+</div>
+<!-- <footer class="footer">
+        <div class="container-fluid">
+          <nav class="float-left">
+            <ul>
+              <li>
+                <a href="#">
+                  Makemyflight
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  About Us
+                </a>
+              </li>
+              
+              <li>
+                <a href="#">
+                  Licenses
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>
+          </div>
+        </div>
+      </footer> -->
+
+    </div>
 {% endblock %}
 
 

@@ -4,40 +4,156 @@
 
 {% block body %}
 <p>{{ form.errors }} {{ form.non_field_errors }}</p>
-<div class="container-fluid">
 
-    <div class="row">
-        <div class="col-sm-12 col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h3>Register for an Account</h3>
-                        
-                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
-                        {% for field in form %}
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <span class="text-danger small">{{ field.errors }}</span>
+<div class="wrapper ">
+<div class="sidebar" data-color="azure" data-background-color="white" data-image="/static/material-dashboard/assets/img/sidebar-1.jpg">
+      <div class="logo">
+        <a  href="{% url 'main_app:Index' %}" class="simple-text logo-normal">
+          KIA
+        </a>
+      </div>
+            <div class="sidebar-wrapper">
+        <ul class="nav">
+           <li class="nav-item nav-item-info active">
+            <a href="{% url 'main_app:RegisterPage' %}" class="nav-link">
+              <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; 
+              <i class="material-icons">person</i>
+              {% if 'username' in request.session  %}
+                  Logout
+              {% else %}
+                  Register/Login
+              {% endif %}
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a href="#" class="nav-link">
+              <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span >&nbsp;<i class="material-icons">info_outline</i>FAQ
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span >&nbsp;<i class="material-icons">bubble_chart</i>About us
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span >&nbsp;<i class="material-icons">library_books</i>Licenses
+            </a>
+          </li>
+          
+
+        </ul>
+      </div>
+
+    </div>
+<div class="main-panel">
+    <div class="content">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card" id= "signup_form">
+                            <div class="card-header card-header-info">
+                                  <h4 class="card-title">Create an account</h4>
+                                  <p class="card-category">Enter your details</p>
                                 </div>
-                                <label class="control-label col-sm-2">{{ field.label_tag }}</label>
-                                <div class="col-sm-10">{{ field }}</div>
+                                <!-- <h3>Register for an Account</h3> -->
+                                  <div class="card-body">  
+                                <form class="has-info" role="form" action="" method="post" enctype="multipart/form-data">
+                                                        {% for field in form %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+
+                                        <label class="bmd-label-floating">{{ field.label_tag }}</label>
+                                   
+                                        <input class="form-control" id= "{{field.id_for_label}}" name="{{field.html_name}}" type= "text">
+                                    
+                                    </div>
+                                </div>
                             </div>
+
                         {% endfor %}
                         {% csrf_token %}
+                        <!--
+                                    {% for field in form %}
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <span class="text-danger small">{{ field.errors }}</span>
+                                            </div>
+                                            <label class="control-label col-sm-2">{{ field.label_tag }}</label>
+                                            <div class="col-sm-10">{{ field }}</div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    {% endfor %}
+                                    {% csrf_token %}
+-->
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="form-group text-center">
+                                          <button type="submit" class="btn" style="background:black" id="signup">SIGN UP</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="form-group">
+                                          <center><p>Already have an account? <a class="text-info" href="{% url 'main_app:LoginPage' %}" id= "goto_signup">Sign in</a></p></center>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="clearfix"></div>
 
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-success">Submit</button>
+                                    <!-- <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-success">Submit</button>
+                                        </div>
+                                    </div> -->
+                                </form>
                             </div>
                         </div>
-                    </form>
+                        
+                    </div>
                 </div>
-                <div class="panel-footer">
-                    Already have an account? <a href="{% url 'main_app:LoginPage' %}">Click here</a> to log in.
-                </div>
+
             </div>
-        </div>
     </div>
 
+    <footer class="footer">
+        <div class="container-fluid">
+          <nav class="float-left">
+            <ul>
+              <li>
+                <a href="#">
+                  KIA
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  About Us
+                </a>
+              </li>
+              
+              <li>
+                <a href="#">
+                  Licenses
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>
+          </div>
+        </div>
+      </footer>
+</div>
 </div>
 
 {% endblock %}
